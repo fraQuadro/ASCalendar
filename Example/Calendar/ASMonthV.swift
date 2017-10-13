@@ -18,12 +18,12 @@ class ASMonthV: UIView, ASCalendarNamesM {
             self.viewModel.monthM.bindAndFire{
                 [unowned self] in
                 //populate
-                self.monthLabel.text = self.getMonthNames()[$0.month-1].uppercaseString
+                self.monthLabel.text = self.getMonthNames()[$0.month-1].uppercased()
                 for i in 0..<self.rowsV.count {
                     //show or hide week
-                    self.rowsV[i].hidden = false
+                    self.rowsV[i].isHidden = false
                     if (i >= $0.weeks.count) {
-                        self.rowsV[i].hidden = true
+                        self.rowsV[i].isHidden = true
                     } else {
                         if (self.rowsV[i].viewModel == nil) {
                             self.rowsV[i].viewModel = self.viewModel.getWeekModel($0.weeks[i], currentViewModel: nil)
@@ -65,7 +65,7 @@ class ASMonthV: UIView, ASCalendarNamesM {
         self.addSubview(separatorV)
         //add month label
         monthLabel = UILabel(frame: CGRect(x: 10, y: 0, width: frame.width - 20, height: 30))
-        monthLabel.textColor = UIColor.redColor()
+        monthLabel.textColor = UIColor.red
         self.addSubview(monthLabel)
         //add rows
         let rowH = (frame.height - 30) / 6
@@ -87,7 +87,7 @@ class ASMonthV: UIView, ASCalendarNamesM {
         //count active rows
         var rowCount : CGFloat = 0
         rowsV.forEach { (rowV) in
-            if (rowV.hidden == false) {
+            if (rowV.isHidden == false) {
                 rowCount += 1
             }
         }

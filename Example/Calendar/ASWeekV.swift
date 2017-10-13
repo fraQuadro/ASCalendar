@@ -17,7 +17,7 @@ class ASWeekV : UIView {
         didSet {
             self.viewModel.weekM.bindAndFire {
                 [unowned self] in
-                self.selectionV.hidden = !$0.weekSelected
+                self.selectionV.isHidden = !$0.weekSelected
                 //update viewmodel for each day box
                 for i in 0..<7 {
                     if (self.boxesV[i].viewModel == nil) {
@@ -38,7 +38,7 @@ class ASWeekV : UIView {
             }
             theme.weekSelectionSize.bindAndFire {
                 [unowned self] in
-                self.selectionV.frame = CGRectMake(0, 0, self.frame.size.width - 4, $0)
+                self.selectionV.frame = CGRect(x: 0, y: 0, width: self.frame.size.width - 4, height: $0)
             }
             //set theme vm to cell views
             self.boxesV.forEach { (boxV) in
@@ -50,9 +50,9 @@ class ASWeekV : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //add selection view
-        selectionV = UIView(frame: CGRectMake(0, 0, self.frame.size.width - 4, 32))
+        selectionV = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width - 4, height: 32))
         selectionV.center = CGPoint(x: frame.width/2, y: frame.height/2)
-        selectionV.backgroundColor = UIColor.redColor()
+        selectionV.backgroundColor = UIColor.red
         self.addSubview(selectionV)
         //add day views
         boxesV = Array<ASDayV>()

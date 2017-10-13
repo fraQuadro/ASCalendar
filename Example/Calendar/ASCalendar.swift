@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ASCalendarDelegate: class {
-    func calendarSelect(day: Int, week: Int, month: Int, year: Int)
+    func calendarSelect(_ day: Int, week: Int, month: Int, year: Int)
 }
 
 class ASCalendar: NSObject {
@@ -24,13 +24,13 @@ class ASCalendar: NSObject {
     override init() {
         super.init()
         //get current date
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        let date = Date()
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day , .month , .year], from: date)
         let year =  components.year
         let month = components.month
         //create default settings
-        calendarSettings = ASSettingsM(month: month, year: year)
+        calendarSettings = ASSettingsM(month: month!, year: year!)
         calendarSettings.selectedDay.bind {
             self.delegate?.calendarSelect($0.dayNumber, week: $0.dayWeek, month: $0.dayMonth, year: $0.dayYear)
         }
@@ -55,38 +55,38 @@ class ASCalendar: NSObject {
     
     //MARK: settings public methods
     
-    func setcurrentPage(month: Int, year: Int) {
+    func setcurrentPage(_ month: Int, year: Int) {
         calendarSettings.selectedMonth.value = (month: month, year: year)
     }
     
-    func setFirstSelectableDate(day: Int, month: Int, year: Int) {
+    func setFirstSelectableDate(_ day: Int, month: Int, year: Int) {
         calendarSettings.firstSelectableDate.value = (day : day, month : month, year: year)
     }
     
-    func setLastSelectableDate(day: Int, month: Int, year: Int) {
+    func setLastSelectableDate(_ day: Int, month: Int, year: Int) {
         calendarSettings.lastSelectableDate.value = (day : day, month : month, year: year)
     }
     
-    func setSelectedDay(day: Int, month: Int, year: Int) {
+    func setSelectedDay(_ day: Int, month: Int, year: Int) {
         let selectedDay = ASDayM(day: day, month: month, year: year)
         calendarSettings.selectedDay.value = selectedDay
     }
     
-    func setSelectionStyle(style : BodySelectionStyle) {
+    func setSelectionStyle(_ style : BodySelectionStyle) {
         calendarSettings.selectionStyle.value = style
     }
     
-    func setMondayFirstWeekDay(flag : Bool) {
+    func setMondayFirstWeekDay(_ flag : Bool) {
         self.calendarSettings.startByMonday.value = flag
     }
     
-    func setSundayFirstWeekDay(flag : Bool) {
+    func setSundayFirstWeekDay(_ flag : Bool) {
         self.calendarSettings.startByMonday.value = !flag
     }
     
     //MARK: theme public methods
     
-    func configureHeader(backgroundColor: UIColor?, textColor: UIColor?, textFont : UIFont?, separationLineColor: UIColor?) {
+    func configureHeader(_ backgroundColor: UIColor?, textColor: UIColor?, textFont : UIFont?, separationLineColor: UIColor?) {
         if (backgroundColor != nil) {
             theme.headerColor.value = backgroundColor!
         }
@@ -101,7 +101,7 @@ class ASCalendar: NSObject {
         }
     }
     
-    func configureBodyHeader(backgroundColor: UIColor?, textColor: UIColor?, textFont: UIFont?, separationLineColor: UIColor?) {
+    func configureBodyHeader(_ backgroundColor: UIColor?, textColor: UIColor?, textFont: UIFont?, separationLineColor: UIColor?) {
         if (backgroundColor != nil) {
             theme.bodyBackgroundColor.value = backgroundColor!
         }
@@ -116,7 +116,7 @@ class ASCalendar: NSObject {
         }
     }
     
-    func configureBody(backgroundColor: UIColor?, monthTextColor: UIColor?, monthTextFont: UIFont?, separationLineColor: UIColor?) {
+    func configureBody(_ backgroundColor: UIColor?, monthTextColor: UIColor?, monthTextFont: UIFont?, separationLineColor: UIColor?) {
         if (backgroundColor != nil) {
             theme.bodyHeaderColor.value = backgroundColor!
         }
@@ -131,7 +131,7 @@ class ASCalendar: NSObject {
         }
     }
     
-    func configureDay(selectableTextColor: UIColor?, unselectableTextColor: UIColor?, selectedTextColor: UIColor?, TextFont: UIFont?) {
+    func configureDay(_ selectableTextColor: UIColor?, unselectableTextColor: UIColor?, selectedTextColor: UIColor?, TextFont: UIFont?) {
         if (selectableTextColor != nil) {
             theme.bodyDayActiveTextColor.value = selectableTextColor!
         }
@@ -146,7 +146,7 @@ class ASCalendar: NSObject {
         }
     }
     
-    func configureSelections(selectionColor: UIColor?, daySelectionSize: CGFloat?, weekSelectionHeight: CGFloat?) {
+    func configureSelections(_ selectionColor: UIColor?, daySelectionSize: CGFloat?, weekSelectionHeight: CGFloat?) {
         if (selectionColor != nil) {
             theme.bodySelectionColor.value = selectionColor!
         }

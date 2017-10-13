@@ -20,7 +20,7 @@ class ViewController: UIViewController, ASCalendarDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func openDefault(sender : UIButton) {
+    @IBAction func openDefault(_ sender : UIButton) {
         let calendar = ASCalendar()
         calendar.delegate = self
         calendar.showCalendarAsLayer()
@@ -28,7 +28,7 @@ class ViewController: UIViewController, ASCalendarDelegate {
 
     //MARK: calendar delegate
     
-    func calendarSelect(day: Int, week: Int, month: Int, year: Int) {
+    func calendarSelect(_ day: Int, week: Int, month: Int, year: Int) {
         NSLog("%d-%d-%d (%d)", day, month, year, week)
     }
 }

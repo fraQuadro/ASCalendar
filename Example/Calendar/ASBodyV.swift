@@ -99,24 +99,24 @@ ASCalendarNamesM {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         //add scrollview ans calendar
         scrollView = UIScrollView(frame: self.bounds)
         scrollView.delegate = self
-        scrollView.setContentOffset(CGPointMake(0, frame.height), animated: false)
+        scrollView.setContentOffset(CGPoint(x: 0, y: frame.height), animated: false)
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         self.addSubview(scrollView)
         self.createMonthBoxes(frame.width, height: frame.height)
         //add header
         headerV = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 30))
-        headerV.backgroundColor = UIColor.grayColor()
+        headerV.backgroundColor = UIColor.gray
         self.addSubview(headerV)
         //show day names label to header
         let dayLabelW = frame.width / 7
         for i in 0...6 {
             let dayLabel = UILabel(frame: CGRect(x: CGFloat(i) * dayLabelW, y: 0, width: dayLabelW, height: 30))
-            dayLabel.textAlignment = .Center
+            dayLabel.textAlignment = .center
             headerLabels.append(dayLabel)
             headerV.addSubview(dayLabel)
         }
@@ -131,19 +131,19 @@ ASCalendarNamesM {
     
     //MARK: scrollView delegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y <= 0) {
             self.viewModel?.switchMonth(false)
-            scrollView.setContentOffset(CGPointMake(0, self.frame.height), animated: false)
+            scrollView.setContentOffset(CGPoint(x: 0, y: self.frame.height), animated: false)
         } else if (scrollView.contentOffset.y >= self.frame.height * 2) {
             self.viewModel?.switchMonth(true)
-            scrollView.setContentOffset(CGPointMake(0, self.frame.height), animated: false)
+            scrollView.setContentOffset(CGPoint(x: 0, y: self.frame.height), animated: false)
         }
     }
     
     //MARK: private methods
     
-    internal func reloadCell(index : Int) {
+    internal func reloadCell(_ index : Int) {
         if (self.viewModel != nil) {
             let cell = self.monthsV[index]
             if (cell.viewModel == nil) {
@@ -155,9 +155,9 @@ ASCalendarNamesM {
         }
     }
     
-    internal func createMonthBoxes(width : CGFloat, height : CGFloat) {
+    internal func createMonthBoxes(_ width : CGFloat, height : CGFloat) {
         for i in 0..<3 {
-            let monthV =  ASMonthV.init(frame: CGRectMake(0, height * CGFloat(i), width, height))
+            let monthV =  ASMonthV.init(frame: CGRect(x: 0, y: height * CGFloat(i), width: width, height: height))
             scrollView.addSubview(monthV)
             monthsV.append(monthV)
         }

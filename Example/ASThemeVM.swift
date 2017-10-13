@@ -12,23 +12,23 @@ import UIKit
 class ASThemeVM : NSObject {
     
     var headerColor = Dynamic(UIColor(red:1.00, green:0.16, blue:0.15, alpha:1.00)) //colore della barra del titolo
-    var headerTextColor = Dynamic(UIColor.whiteColor()) //colore del titolo
+    var headerTextColor = Dynamic(UIColor.white) //colore del titolo
     var headerTextFont = Dynamic(UIFont (name: "Helvetica", size: 16))// font del titolo
     var headerSeparatorColor = Dynamic(UIColor(red:1.00, green:0.16, blue:0.15, alpha:1.00)) //linea di separazione orizzontale nella barra del titolo
     
     var bodyHeaderColor = Dynamic(UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)) //colore della barra con i nomi dei giorni della settimana
-    var bodyHeaderTextColor = Dynamic(UIColor.blackColor()) //colore del testo dei nomi della settimana
+    var bodyHeaderTextColor = Dynamic(UIColor.black) //colore del testo dei nomi della settimana
     var bodyHeaderTextFont = Dynamic(UIFont (name: "Helvetica", size: 14))// font dei nomi della settimana
     var bodyHeaderSeparatorColor = Dynamic(UIColor(red:0.92, green:0.92, blue:0.92, alpha:1.00)) //colore della linea di separazione orizzontale nella barra con i nomi dei giorni della settimana
 
-    var bodyBackgroundColor = Dynamic(UIColor.whiteColor()) //sfondo del calendario
+    var bodyBackgroundColor = Dynamic(UIColor.white) //sfondo del calendario
     var bodyMonthTitleColor = Dynamic(UIColor(red:1.00, green:0.16, blue:0.15, alpha:1.00)) //colore del nome del mese scritto nel calendario
     var bodyMonthTextFont = Dynamic(UIFont (name: "Helvetica", size: 16))// font dei nomi della settimana
     var bodySeparatorColor = Dynamic(UIColor(red:0.97, green:0.97, blue:0.97, alpha:1.00)) //linea di separazione orizzontale tra un mese e l altro
     
     var bodyDayActiveTextColor = Dynamic(UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.00)) //colore del numero del giorno quando attivo
     var bodyDayInactiveTextColor = Dynamic(UIColor(red:0.44, green:0.44, blue:0.44, alpha:1.00)) //colore del numero del giorno quando inattivo
-    var bodyDaySelectedTextColor = Dynamic(UIColor.whiteColor()) //colore del numero del giorno quando selezionato
+    var bodyDaySelectedTextColor = Dynamic(UIColor.white) //colore del numero del giorno quando selezionato
     var bodyDayTextFont = Dynamic(UIFont (name: "Helvetica", size: 14))// font del numero del giorno
     
     var bodySelectionColor = Dynamic(UIColor(red:1.00, green:0.16, blue:0.15, alpha:1.00)) //colore della selezione
@@ -39,7 +39,7 @@ class ASThemeVM : NSObject {
         super.init()
     }
     
-    func defaults(index : Int) {
+    func defaults(_ index : Int) {
         switch index {
         case 1 :
             headerColor.value = UIColor(red:0.39, green:0.88, blue:0.70, alpha:1.00)

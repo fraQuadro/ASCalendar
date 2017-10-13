@@ -27,7 +27,7 @@ class ASCustomLayer: UIView {
     }
     
     func commonInit () {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     //MARK: public methods
@@ -39,7 +39,7 @@ class ASCustomLayer: UIView {
     
     //MARK: user interaction 
     
-    func handleTap() {
+    @objc func handleTap() {
         self.closingAnimations()
     }
     
@@ -47,43 +47,43 @@ class ASCustomLayer: UIView {
     
     internal func createLayer () {
         //create self
-        let mainWindow : UIWindow = UIApplication.sharedApplication().keyWindow!
+        let mainWindow : UIWindow = UIApplication.shared.keyWindow!
         self.translatesAutoresizingMaskIntoConstraints = false
         mainWindow.addSubview(self)
         //set self layout
         let topConstraint = NSLayoutConstraint(
             item: self,
-            attribute: .Top,
-            relatedBy: .Equal,
+            attribute: .top,
+            relatedBy: .equal,
             toItem: mainWindow,
-            attribute: .Top,
+            attribute: .top,
             multiplier: 1,
             constant: 0
         )
         let bottomConstraint = NSLayoutConstraint(
             item: self,
-            attribute: .Bottom,
-            relatedBy: .Equal,
+            attribute: .bottom,
+            relatedBy: .equal,
             toItem: mainWindow,
-            attribute: .Bottom,
+            attribute: .bottom,
             multiplier: 1,
             constant: 0
         )
         let leftConstraint = NSLayoutConstraint(
             item: self,
-            attribute: .Left,
-            relatedBy: .Equal,
+            attribute: .left,
+            relatedBy: .equal,
             toItem: mainWindow,
-            attribute: .Left,
+            attribute: .left,
             multiplier: 1,
             constant: 0
         )
         let rightConstraint = NSLayoutConstraint(
             item: self,
-            attribute: .Right,
-            relatedBy: .Equal,
+            attribute: .right,
+            relatedBy: .equal,
             toItem: mainWindow,
-            attribute: .Right,
+            attribute: .right,
             multiplier: 1,
             constant: 0
         )
@@ -91,44 +91,44 @@ class ASCustomLayer: UIView {
         //create black layer
         self.blackLayer = UIView()
         self.blackLayer.alpha = 0 
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         blackLayer = UIVisualEffectView(effect: darkBlur)
         self.addSubview(blackLayer)
         self.blackLayer.translatesAutoresizingMaskIntoConstraints = false
         //set black layer layout
         let topLayerConstraint = NSLayoutConstraint(
             item: self.blackLayer,
-            attribute: .Top,
-            relatedBy: .Equal,
+            attribute: .top,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .Top,
+            attribute: .top,
             multiplier: 1,
             constant: 0
         )
         let bottomLayerConstraint = NSLayoutConstraint(
             item: self.blackLayer,
-            attribute: .Bottom,
-            relatedBy: .Equal,
+            attribute: .bottom,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .Bottom,
+            attribute: .bottom,
             multiplier: 1,
             constant: 0
         )
         let leftLayerConstraint = NSLayoutConstraint(
             item: self.blackLayer,
-            attribute: .Left,
-            relatedBy: .Equal,
+            attribute: .left,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .Left,
+            attribute: .left,
             multiplier: 1,
             constant: 0
         )
         let rightLayerConstraint = NSLayoutConstraint(
             item: self.blackLayer,
-            attribute: .Right,
-            relatedBy: .Equal,
+            attribute: .right,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .Right,
+            attribute: .right,
             multiplier: 1,
             constant: 0
         )
@@ -144,36 +144,36 @@ class ASCustomLayer: UIView {
         //set calendar view layout
         let centerXConstraint = NSLayoutConstraint(
             item: self.calendar,
-            attribute: .CenterX,
-            relatedBy: .Equal,
+            attribute: .centerX,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .CenterX,
+            attribute: .centerX,
             multiplier: 1,
             constant: 0
         )
         self.centerYConstraint = NSLayoutConstraint(
             item: self.calendar,
-            attribute: .CenterY,
-            relatedBy: .Equal,
+            attribute: .centerY,
+            relatedBy: .equal,
             toItem: self,
-            attribute: .CenterY,
+            attribute: .centerY,
             multiplier: 1,
             constant: 100)
         let widthConstraint = NSLayoutConstraint(
             item: self.calendar,
-            attribute: .Width,
-            relatedBy: .Equal,
+            attribute: .width,
+            relatedBy: .equal,
             toItem: nil,
-            attribute: .NotAnAttribute,
+            attribute: .notAnAttribute,
             multiplier: 1.0,
             constant: 250)
         
         let heightConstraint = NSLayoutConstraint(
             item: self.calendar,
-            attribute: .Height,
-            relatedBy: .Equal,
+            attribute: .height,
+            relatedBy: .equal,
             toItem: nil,
-            attribute: .NotAnAttribute,
+            attribute: .notAnAttribute,
             multiplier: 1.0,
             constant: 250)
 
@@ -191,15 +191,15 @@ class ASCustomLayer: UIView {
     
     internal func presentationAnimations() {
         self.centerYConstraint.constant = 0
-        UIView.animateWithDuration(0.2) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.blackLayer.alpha = 1
             self.calendar.alpha = 1
             self.layoutIfNeeded()
-        }
+        }) 
     }
     
     func closingAnimations() {
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.blackLayer.alpha = 0
             self.calendar.alpha = 0
             self.centerYConstraint.constant = 100

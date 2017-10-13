@@ -36,15 +36,15 @@ struct ASDayM {
         dayYear = year
         dayMonth = month
         //create a nsdate
-        let calendar = NSCalendar.currentCalendar()
+        var calendar = Calendar.current
         calendar.minimumDaysInFirstWeek = 7
-        let components = NSDateComponents()
+        var components = DateComponents()
         components.year = year
         components.month = month
         components.day = day
-        let date = calendar.dateFromComponents(components)
+        let date = calendar.date(from: components)
         //calculate week
-        let myComponents = calendar.components([.Weekday, .WeekOfYear], fromDate: date!)
+        let myComponents = (calendar as NSCalendar).components([.weekday, .weekOfYear], from: date!)
         dayWeek = myComponents.weekOfYear
     }
 }

@@ -10,14 +10,14 @@
 //  MVVM design pattern
 
 class Dynamic<T> {
-    typealias Listener = T -> Void
+    typealias Listener = (T) -> Void
     var listener = Array<Listener?>()
     
-    func bind(listener: Listener?) {
+    func bind(_ listener: Listener?) {
         self.listener.append(listener)
     }
     
-    func bindAndFire(listener: Listener?) {
+    func bindAndFire(_ listener: Listener?) {
         self.listener.append(listener)
         listener?(value)
     }

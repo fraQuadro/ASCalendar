@@ -18,33 +18,33 @@ extension ASCalendarNamesM {
     
     func getWeekNamesFromMonday() -> Array<String> {
         //get day names
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
         let fullWeekDays = formatter.weekdaySymbols
         var weekDays = Array<String>()
         for i in 1...6 {
-            weekDays.append(String(fullWeekDays[i].characters.first!).uppercaseString)
+            weekDays.append(String(describing: fullWeekDays?[i].characters.first!).uppercased())
         }
         //move sunday at the end of the week
-        weekDays.append(String(fullWeekDays[0].characters.first!).uppercaseString)
+        weekDays.append(String(describing: fullWeekDays?[0].characters.first!).uppercased())
         return weekDays
     }
     
     func getWeekNamesFromSunday() -> Array<String> {
         //get day names
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
         let fullWeekDays = formatter.weekdaySymbols
         var weekDays = Array<String>()
         for i in 0...6 {
-            weekDays.append(String(fullWeekDays[i].characters.first!).uppercaseString)
+            weekDays.append(String(describing: fullWeekDays?[i].characters.first!).uppercased())
         }
         return weekDays
     }
     
     func getMonthNames() -> Array<String> {
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
         return formatter.monthSymbols
     }
     

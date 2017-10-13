@@ -17,10 +17,10 @@ class ASDayV : UIView {
         didSet {
             self.viewModel.dayM.bindAndFire {
                 [unowned self] in
-                self.hidden = !$0.dayEnabled
+                self.isHidden = !$0.dayEnabled
                 if ($0.dayEnabled == true) {
                     self.numberLabel.text = String($0.dayNumber)
-                    self.selectionV.hidden = !$0.daySelected
+                    self.selectionV.isHidden = !$0.daySelected
                     if ($0.daySelectable == true) {
                         self.numberLabel.textColor = self.theme.bodyDayActiveTextColor.value
                     } else {
@@ -64,7 +64,7 @@ class ASDayV : UIView {
             }
             theme.daySelectionSize.bindAndFire {
                 [unowned self] in
-                self.selectionV.frame = CGRectMake(0, 0, $0, $0)
+                self.selectionV.frame = CGRect(x: 0, y: 0, width: $0, height: $0)
                 self.selectionV.center = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
             }
         }
@@ -79,12 +79,12 @@ class ASDayV : UIView {
         self.addSubview(selectionV)
         //add numberLabel
         numberLabel = UILabel.init(frame: self.bounds)
-        numberLabel.textAlignment = .Center
+        numberLabel.textAlignment = .center
         self.addSubview(numberLabel)
         //gesture
         let tapGesture  = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         self.addGestureRecognizer(tapGesture)
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -97,7 +97,7 @@ class ASDayV : UIView {
     
     //MARK: user interaction
     
-    func handleTap () {
+    @objc func handleTap () {
         if (self.viewModel.dayM.value.daySelectable == true) {
             self.viewModel.selected()
         }

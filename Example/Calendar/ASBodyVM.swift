@@ -16,7 +16,7 @@ class ASBodyVM: NSObject {
         self.settingsM = settings
     }
     
-    internal func switchMonth(increment : Bool) {
+    internal func switchMonth(_ increment : Bool) {
         var mutantingMonth = self.settingsM.selectedMonth.value.month
         var mutantingYear = self.settingsM.selectedMonth.value.year
         if (increment == false) {
@@ -38,7 +38,7 @@ class ASBodyVM: NSObject {
         self.settingsM.selectedMonth.value = (month : mutantingMonth, year : mutantingYear)
     }
     
-    internal func calculateMonthOffset(row : Int) -> (month: Int, year: Int) {
+    internal func calculateMonthOffset(_ row : Int) -> (month: Int, year: Int) {
         var monthOffset = self.settingsM.selectedMonth.value.month
         var yearOffset = self.settingsM.selectedMonth.value.year
         let offset = row - 1
@@ -55,8 +55,8 @@ class ASBodyVM: NSObject {
     }
     
     //MARK: public methods
-    
-    func getViewModelForRow(index : Int, currentViewModel : ASMonthVM?) -> ASMonthVM? {
+    @discardableResult
+    func getViewModelForRow(_ index : Int, currentViewModel : ASMonthVM?) -> ASMonthVM? {
         let offset = self.calculateMonthOffset(index)
         let month = ASMonthM(month: offset.month, year: offset.year, settings: self.settingsM)
         //update or return the viewModel

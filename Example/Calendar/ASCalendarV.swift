@@ -19,9 +19,9 @@ class ASCalendarV: UIView {
         super.init(frame: frame)
         //add calendar header label
         headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: 40))
-        headerLabel.backgroundColor = UIColor.redColor()
-        headerLabel.textColor = UIColor.whiteColor()
-        headerLabel.textAlignment = .Center
+        headerLabel.backgroundColor = UIColor.red
+        headerLabel.textColor = UIColor.white
+        headerLabel.textAlignment = .center
         headerLabel.text = "CALENDAR"
         self.addSubview(headerLabel)
         //add separator to header
